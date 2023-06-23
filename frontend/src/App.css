@@ -1,0 +1,284 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+:root {
+  --primary: #275efe;
+  --primary-dark: #2850c4;
+  --primary-light: #668dff;
+  --dark: #1c212e;
+  --white: #fff;
+  --green: #16bf78;
+  --sand: #dcb773;
+}
+
+.order {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: 0;
+  background: var(--white);
+  position: relative;
+  height: 63px;
+  width: 240px;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 32px;
+  overflow: hidden;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  transition: transform 0.3s ease;
+}
+.order span {
+  --y: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  top: 19px;
+  line-height: 24px;
+  color: var(--dark);
+  font-size: 16px;
+  font-weight: 500;
+  transform: translateY(var(--y));
+}
+.order span.default {
+  transition-delay: 0.3s;
+  transition: opacity 0.3s ease 0.3s;
+}
+.order span.success {
+  --y: 60px;
+  transition: transform 0.5s ease;
+}
+.order span.success svg {
+  width: 12px;
+  height: 10px;
+  display: inline-block;
+  vertical-align: top;
+  fill: none;
+  margin: 7px 0 0 4px;
+  stroke: var(--green);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 16px;
+  stroke-dashoffset: 16px;
+  transition: stroke-dashoffset 0.3s ease;
+}
+.order:active {
+  transform: scale(0.94);
+}
+.order .box,
+.order .drone {
+  position: absolute;
+}
+.order .box {
+  width: 20px;
+  height: 20px;
+  left: 50%;
+  margin-left: -10px;
+  top: 100%;
+  border-radius: 2px;
+  background: var(--sand);
+}
+.order .box:before, .order .box:after {
+  content: "";
+  position: absolute;
+  display: block;
+  left: 5px;
+}
+.order .box:before {
+  top: 0;
+  width: 4px;
+  height: 9px;
+  background: rgba(255, 255, 255, 0.3);
+}
+.order .box:after {
+  z-index: 1;
+  top: 7px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 2px 2px 2px;
+  border-color: transparent transparent var(--sand) transparent;
+}
+.order .drone {
+  width: 42px;
+  height: 14px;
+  z-index: 1;
+  top: 16px;
+  right: 100%;
+  transform: translateX(-7px);
+}
+.order .drone svg {
+  display: block;
+}
+.order .drone svg.body {
+  width: 42px;
+  height: 14px;
+  position: relative;
+  z-index: 1;
+  color: var(--primary);
+}
+.order .drone svg.wing {
+  position: absolute;
+  width: 21px;
+  height: 2px;
+  top: 1px;
+  color: var(--primary-light);
+}
+.order .drone svg.wing.left {
+  left: -7px;
+}
+.order .drone svg.wing.right {
+  right: -7px;
+}
+.order .drone svg.grab {
+  position: absolute;
+  width: 26px;
+  height: 14px;
+  left: 8px;
+  top: 10px;
+  color: var(--primary-dark);
+  stroke-dashoffset: 34px;
+  stroke-dasharray: 0 48px 19px 48px;
+}
+.order.animate .default {
+  opacity: 0;
+  transition-delay: 0s;
+}
+.order.animate .success {
+  --y: 0;
+  transition-delay: 3.85s;
+}
+.order.animate .success svg {
+  transition-delay: 4.3s;
+  stroke-dashoffset: 0;
+}
+.order.animate .drone {
+  -webkit-animation: move 5s ease forwards;
+          animation: move 5s ease forwards;
+}
+.order.animate .drone .wing {
+  -webkit-animation: wing 5s linear forwards;
+          animation: wing 5s linear forwards;
+}
+.order.animate .drone .grab {
+  -webkit-animation: grab 0.6s ease forwards 2.3s;
+          animation: grab 0.6s ease forwards 2.3s;
+}
+.order.animate .box {
+  -webkit-animation: box 5s ease forwards;
+          animation: box 5s ease forwards;
+}
+
+@-webkit-keyframes move {
+  0% {
+    transform: translateX(-7px) rotate(14deg);
+  }
+  55%, 70% {
+    transform: translateX(141px) rotate(0deg);
+  }
+  100% {
+    transform: translateX(141px) translateY(-84px) rotate(0deg);
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(-7px) rotate(14deg);
+  }
+  55%, 70% {
+    transform: translateX(141px) rotate(0deg);
+  }
+  100% {
+    transform: translateX(141px) translateY(-84px) rotate(0deg);
+  }
+}
+@-webkit-keyframes grab {
+  100% {
+    stroke-dashoffset: 48px;
+    stroke-dasharray: 0 48px 48px 48px;
+  }
+}
+@keyframes grab {
+  100% {
+    stroke-dashoffset: 48px;
+    stroke-dasharray: 0 48px 48px 48px;
+  }
+}
+@-webkit-keyframes wing {
+  100% {
+    transform: rotateY(7200deg);
+  }
+}
+@keyframes wing {
+  100% {
+    transform: rotateY(7200deg);
+  }
+}
+@-webkit-keyframes box {
+  0%, 10% {
+    transform: translateY(0);
+  }
+  55%, 70% {
+    transform: translateY(-28px);
+  }
+  100% {
+    transform: translateY(-112px);
+  }
+}
+@keyframes box {
+  0%, 10% {
+    transform: translateY(0);
+  }
+  55%, 70% {
+    transform: translateY(-28px);
+  }
+  100% {
+    transform: translateY(-112px);
+  }
+}
+.dribbble {
+  position: fixed;
+  display: block;
+  right: 20px;
+  bottom: 20px;
+}
+.dribbble img {
+  display: block;
+  height: 28px;
+}

@@ -10,6 +10,8 @@ import {
   Input,
   Label,
 } from "reactstrap";
+import $ from 'jquery';
+
 
 export default class CustomModal extends Component {
   constructor(props) {
@@ -33,6 +35,22 @@ export default class CustomModal extends Component {
 
   render() {
     const { toggle, onSave } = this.props;
+
+
+  //   $('.order').click(function(e) {
+
+  //     let button = $('.order');
+  
+  //     if(!button.hasClass('animate')) {
+  //         button.addClass('animate');
+  //         setTimeout(() => {
+  //             button.removeClass('animate');
+  //         }, 6500);
+  //     }
+  
+  // });
+
+
 
     return (
       <Modal isOpen={true} toggle={toggle}>
@@ -77,7 +95,17 @@ export default class CustomModal extends Component {
         <ModalFooter>
           <Button
             color="success"
-            onClick={() => onSave(this.state.activeItem)}
+            onClick={() => {
+              onSave(this.state.activeItem);
+              let button = $('.order');
+  
+              if(!button.hasClass('animate')) {
+                  button.addClass('animate');
+                  setTimeout(() => {
+                      button.removeClass('animate');
+                  }, 6500);
+              }
+            }}
           >
             Save
           </Button>
